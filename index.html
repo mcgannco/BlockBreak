@@ -6,22 +6,35 @@
     <link rel="stylesheet" href="./css/main.css">
     <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
   </head>
+
   <body>
-    <div class="header">
-      <img src="./assets/images/logo.jpg"/>
-
-      <div>
-        <h1 class="welcome">Welcome to BlockBreak!</h1>
-        <div>
-          <h1 class="author">Developed By Connor McGann</h1>
-          <a href="">Github</a>
-          <a href="">Linkedin</a>
-        </div>
-
-
+      <div class="header">
+          <h1 class="welcome">Welcome to BlockBreak!</h1>
       </div>
+
+
+    <div class="maincontainer">
+
+      <div class="bodyleft">
+        <h1>Directions</h1>
+        <ul>
+          <li class="directions">Spacebar for a new game</li>
+          <li class="directions">Arrows to move side to side</li>
+          <li class="directions">Break all blocks to advance to next stage</li>
+          <li class="directions">Don't let the ball drop</li>
+          <li class="directions">5 total lives</li>
+        </ul>
+      </div>
+
+      <canvas id="game-canvas"></canvas>
+
+      <div class="bodyright">
+        <h1>Creator: Connor McGann</h1>
+        <a href="https://github.com/mcgannco/BlockBreak">Github</a>
+        <a href="https://www.linkedin.com/in/connor-mcgann-55158b6a/">Linkedin</a>
+      </div>
+
     </div>
-    <canvas id="game-canvas"></canvas>
     <script type="application/javascript" src="lib/bundle.js"></script>
   </body>
 </html>
