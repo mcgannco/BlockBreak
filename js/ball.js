@@ -15,7 +15,6 @@ class Ball extends MovingObject {
   }
 
   move() {
-    
     if(this.pos[0] + this.vel[0] > 800 - this.radius || this.pos[0] + this.vel[0] < this.radius) {
       this.vel[0] *= -1;
     }

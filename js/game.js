@@ -26,7 +26,7 @@ class Game {
     pos: [50,50],
     vel: [3,3],
     radius: 10,
-    color: "blue",
+    color: "red",
     game: this
   });
 
