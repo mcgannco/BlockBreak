@@ -41,10 +41,7 @@ class GameView {
    } else if(event.keyCode === 37 || event.keyCode === 39){
      this.paddle.vel[0] = 0;
    }
-}
-
-
-
+  }
 }
 
 export default GameView;

@@ -1,4 +1,3 @@
-import { calc } from 'popmotion';
 
 class MovingObject {
   constructor(options){
@@ -18,20 +17,7 @@ class MovingObject {
     for (let i = 0; i < 3; i++) {
       color += hexDigits[Math.floor((Math.random() * 15))];
     }
-
     return color;
-  }
-
-  checkWallCollisions() {
-
-  }
-
-  collideWith(otherObj){
-
-  }
-
-  isCollidedWith(otherObject) {
-
   }
 
   remove() {

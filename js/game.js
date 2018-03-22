@@ -39,7 +39,7 @@ class Game {
     height: 20,
     width: 150,
     pos: [325, 450],
-    color: "green",
+    color: "blue",
     vel: [0,0],
     game: this
   });
@@ -69,7 +69,7 @@ class Game {
   }
 
   step(delta){
-    this.moveObjects(delta)
+    this.moveObjects(delta);
   }
 
 
