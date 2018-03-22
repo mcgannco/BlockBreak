@@ -26,9 +26,21 @@ class Game {
     pos: [50,50],
     vel: [3,3],
     radius: 10,
-    dx: 5,
-    dy: 5,
     color: "blue",
+    game: this
+  });
+
+    this.add(ball);
+    return ball;
+  }
+
+  addPaddle() {
+  const ball = new Paddle({
+    height: 20,
+    width: 150,
+    pos: [325, 450],
+    color: "green",
+    vel: [0,0],
     game: this
   });
 

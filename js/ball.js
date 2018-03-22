@@ -6,7 +6,7 @@ class Ball extends MovingObject {
   }
 
   draw(ctx) {
-    
+
     ctx.beginPath();
     ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI);
     ctx.fillStyle = this.color;
@@ -16,15 +16,15 @@ class Ball extends MovingObject {
 
   move() {
 
-    if(this.pos[0] + this.dx > 800 - this.radius || this.pos[0] + this.dx < this.radius) {
-      this.dx *= -1;
+    if(this.pos[0] + this.vel[0] > 800 - this.radius || this.pos[0] + this.vel[0] < this.radius) {
+      this.vel[0] *= -1;
     }
 
-    if(this.pos[1] + this.dy > 500 - this.radius || this.pos[1] + this.dy < this.radius) {
-      this.dy *= -1;
+    if(this.pos[1] + this.vel[1] > 500 - this.radius || this.pos[1] + this.vel[1] < this.radius) {
+      this.vel[1] *= -1;
     }
-    this.pos[0] += this.dx;
-    this.pos[1] += this.dy;
+    this.pos[0] += this.vel[0];
+    this.pos[1] += this.vel[1];
   }
 
 }

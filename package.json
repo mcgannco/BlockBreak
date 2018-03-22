@@ -1,0 +1,15 @@
+{
+  "name": "BlockBreak",
+  "version": "1.0.0",
+  "description": "Break all the Blocks",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Connor McGann",
+  "license": "ISC",
+  "dependencies": {
+    "popmotion": "^8.1.21"
+  }
+}

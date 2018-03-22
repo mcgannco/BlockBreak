@@ -1,3 +1,4 @@
+import { calc } from 'popmotion';
 
 class MovingObject {
   constructor(options){
@@ -6,8 +7,8 @@ class MovingObject {
     this.radius = options.radius;
     this.color = options.color || this.randomColor();
     this.game = options.game;
-    this.dx = options.dx;
-    this.dy = options.dy;
+    this.width = options.width;
+    this.height = options.height;
   }
 
   randomColor() {
@@ -36,8 +37,8 @@ class MovingObject {
   remove() {
     this.game.remove(this);
   }
-}
 
-const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
+
+}
 
 export default MovingObject;
