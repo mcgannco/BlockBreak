@@ -17,10 +17,7 @@ html, body, canvas {
  }
 
  canvas {
-   margin-bottom: 141px;
-   background: black;
-   width: 800px;
-   height: 556px;
+   margin-bottom: 200px;
  }
 
 game-canvas {
