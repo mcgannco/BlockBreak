@@ -20,6 +20,9 @@ class Paddle extends MovingObject {
       this.vel[0] = 0;
     } else {
       this.pos = [this.pos[0] + offsetX, this.pos[1]];
+      if (this.game.ball[0].vel === [0,0]) {
+        this.game.ball[0].pos = [this.pos[0] + offsetX, this.pos[1]];
+      }
     }
   }
 

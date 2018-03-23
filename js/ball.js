@@ -24,13 +24,12 @@ class Ball extends MovingObject {
     if(this.pos[1] + this.vel[1] > 500 - this.radius) {
       this.vel[1] *= -1;
       this.game.lives -= 1
+      this.game.ball[0].pos = [(this.game.paddle[0].pos[0] + (this.game.paddle[0].width / 2)), 440];
     }
     this.pos[0] += this.vel[0];
     this.pos[1] += this.vel[1];
 
   }
-
-
 }
 
 export default Ball;
