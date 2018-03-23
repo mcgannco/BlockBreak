@@ -34,7 +34,7 @@ class GameView {
    } else if (event.keyCode === 39) {
      this.paddle.vel[0] += 7;
    } else if (this.ball.vel[0] === 0 && this.ball.vel[0] === 0 && event.keyCode === 32) {
-     this.ball.vel = [5,5];
+     this.ball.vel = [5,-5];
    }
  }
 
@@ -44,7 +44,7 @@ class GameView {
    } else if(event.keyCode === 37 || event.keyCode === 39){
      this.paddle.vel[0] = 0;
    } else if (this.ball.vel[0] === 0 && this.ball.vel[0] === 0 && event.keyCode === 32) {
-     this.ball.vel = [5,5];
+     this.ball.vel = [5,-5];
    }
   }
 }
