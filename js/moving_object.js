@@ -38,8 +38,8 @@ class MovingObject {
     let x = ((brickObj.pos[0]*(brickObj.width+brickObj.padding)) + brickObj.left);
     let y = ((brickObj.pos[1]*(brickObj.height+brickObj.padding)) + brickObj.top);
 
-    if((this.pos[0] > x && this.pos[0] < x + brickObj.width) &&
-    (this.pos[1] > y && this.pos[1] < y + brickObj.height)) {
+    if((this.pos[0] > x && this.pos[0]  < x + brickObj.width) &&
+    (this.pos[1] - this.radius > y && this.pos[1] - this.radius  < y + brickObj.height)) {
       return true;
     }
   }

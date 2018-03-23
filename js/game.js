@@ -8,6 +8,7 @@ class Game {
     this.ball = [];
     this.paddle = [];
     this.score = 0;
+    this.lives = 5;
   }
 
   add(object) {
@@ -24,8 +25,8 @@ class Game {
 
   addBall() {
   const ball = new Ball({
-    pos: [50,50],
-    vel: [5,5],
+    pos: [400,440],
+    vel: [0,0],
     radius: 10,
     color: "#DC143C",
     game: this
@@ -76,6 +77,18 @@ class Game {
     this.allObjects().forEach((object) => {
       object.draw(ctx);
     });
+
+    ctx.beginPath();
+    ctx.font = ("15px Space Mono");
+    ctx.fillStyle = "White";
+    ctx.fillText(`Score: ${this.score}`,32.5,490);
+    ctx.closePath();
+
+    ctx.beginPath();
+    ctx.font = ("15px Space Mono");
+    ctx.fillStyle = "White";
+    ctx.fillText(`Lives: ${this.lives}`,700,490);
+    ctx.closePath();
   }
 
   moveObjects(delta) {
@@ -118,7 +131,7 @@ class Game {
         bricks[i].counted = 1;
       }
     }
-    
+
   }
 
   step(delta){
