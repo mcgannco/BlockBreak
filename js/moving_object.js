@@ -1,3 +1,4 @@
+import { calc } from 'popmotion';
 
 class MovingObject {
   constructor(options){
@@ -22,6 +23,18 @@ class MovingObject {
 
   remove() {
     this.game.remove(this);
+  }
+
+  isCollidedWith(otherObj) {
+
+    if(this.pos[1] + this.vel[1] > 450 - this.radius &&
+    (this.pos[0] > otherObj.pos[0] && this.pos[0] < otherObj.pos[0] + otherObj.width)) {
+      return true;
+    }
+  }
+
+  collideWith(otherObj) {
+    this.vel[1] *= -1
   }
 
 

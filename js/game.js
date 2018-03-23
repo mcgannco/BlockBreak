@@ -38,7 +38,7 @@ class Game {
   const ball = new Paddle({
     height: 20,
     width: 150,
-    pos: [325, 450],
+    pos: [0, 450],
     color: "blue",
     vel: [0,0],
     game: this
@@ -50,6 +50,14 @@ class Game {
 
   allObjects() {
     return [].concat(this.bricks, this.ball, this.paddle);
+  }
+
+  ballPaddle() {
+    return [].concat(this.ball, this.paddle);
+  }
+
+  ballBrick() {
+    return [].concat(this.ball, this.brick);
   }
 
   draw(ctx) {
@@ -68,8 +76,23 @@ class Game {
     });
   }
 
+  checkPaddleBall() {
+    const allObjects = this.ballPaddle();
+    for (let i = 0; i < allObjects.length; i++) {
+      for (let j = 0; j < allObjects.length; j++) {
+        const obj1 = allObjects[i];
+        const obj2 = allObjects[j];
+        if (obj1 !== obj2 && obj1.isCollidedWith(obj2)) {
+          const collision = obj1.collideWith(obj2);
+          if (collision) return;
+        }
+      }
+    }
+  }
+
   step(delta){
     this.moveObjects(delta);
+    this.checkPaddleBall()
   }
 
 
