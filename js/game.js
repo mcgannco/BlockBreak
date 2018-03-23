@@ -26,7 +26,7 @@ class Game {
     pos: [50,50],
     vel: [5,5],
     radius: 10,
-    color: "red",
+    color: "#DC143C",
     game: this
   });
 
@@ -39,7 +39,7 @@ class Game {
     height: 20,
     width: 150,
     pos: [325, 450],
-    color: "blue",
+    color: "#4169E1",
     vel: [0,0],
     game: this
   });
@@ -51,7 +51,7 @@ class Game {
   addBricks() {
     for (let i = 0; i < Game.NUM_ROWS; i++) {
       for (let j = 0; j < Game.NUM_COLS; j++)
-      this.add(new Brick({ game: this, left: 50, top: 20, padding: 10, width: 100, height: 15, color: "green", pos: [i, j]}));
+      this.add(new Brick({ game: this, left: 32.5, top: 20, padding: 15, width: 110, height: 15, color: "green", pos: [i, j]}));
     }
   }
 
