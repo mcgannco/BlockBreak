@@ -4,6 +4,7 @@ class GameView {
     this.game = game;
     this.ball = this.game.addBall();
     this.paddle = this.game.addPaddle();
+    this.bricks = this.game.addBricks();
   }
 
   start() {

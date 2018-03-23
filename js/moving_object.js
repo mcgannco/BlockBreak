@@ -1,5 +1,3 @@
-import { calc } from 'popmotion';
-
 class MovingObject {
   constructor(options){
     this.pos = options.pos;
