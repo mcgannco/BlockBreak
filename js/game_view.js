@@ -34,7 +34,7 @@ class GameView {
    } else if (event.keyCode === 39) {
      this.paddle.vel[0] += 7;
    }
-   debugger
+
  }
 
  keyUpHandler(event){

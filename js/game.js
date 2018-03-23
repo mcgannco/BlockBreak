@@ -26,7 +26,7 @@ class Game {
   addBall() {
   const ball = new Ball({
     pos: [400,440],
-    vel: [1,1],
+    vel: [5,5],
     radius: 10,
     color: "#DC143C",
     game: this
