@@ -51,7 +51,7 @@ class Game {
   addBricks() {
     for (let i = 0; i < Game.NUM_ROWS; i++) {
       for (let j = 0; j < Game.NUM_COLS; j++)
-      this.add(new Brick({ game: this, width: 40, height: 20, color: "green", pos: [i, j]}));
+      this.add(new Brick({ game: this, left: 50, top: 20, padding: 10, width: 100, height: 15, color: "green", pos: [i, j]}));
     }
   }
 
@@ -75,6 +75,7 @@ class Game {
     this.allObjects().forEach((object) => {
       object.draw(ctx);
     });
+debugger
   }
 
   moveObjects(delta) {
@@ -108,7 +109,7 @@ class Game {
 Game.DIM_X = 800;
 Game.DIM_Y = 500;
 Game.NUM_ROWS = 6;
-Game.NUM_COLS = 5;
+Game.NUM_COLS = 6;
 
 
 export default Game;
