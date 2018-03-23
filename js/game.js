@@ -7,6 +7,7 @@ class Game {
     this.bricks = [];
     this.ball = [];
     this.paddle = [];
+    this.score = 0;
   }
 
   add(object) {
@@ -63,8 +64,8 @@ class Game {
     return [].concat(this.ball, this.paddle);
   }
 
-  ballBrick() {
-    return [].concat(this.ball, this.brick);
+  ballBricks() {
+    return [].concat(this.ball, this.bricks);
   }
 
   draw(ctx) {
@@ -75,7 +76,6 @@ class Game {
     this.allObjects().forEach((object) => {
       object.draw(ctx);
     });
-debugger
   }
 
   moveObjects(delta) {
@@ -98,9 +98,34 @@ debugger
     }
   }
 
+  checkBallBricks() {
+    const allObjects = this.ballBricks();
+    const ball = allObjects[0];
+    for (let i = 1; i < allObjects.length; i++) {
+      const brickobj = allObjects[i];
+      if (ball.hitBrick(brickobj)) {
+        const collision = ball.breakBrick(brickobj);
+        if (collision) return;
+      }
+    }
+  }
+
+  checkScore() {
+    const bricks = this.bricks;
+    for( let i = 0; i < bricks.length; i++) {
+      if (bricks[i].hit === 1 && bricks[i].counted === 0) {
+        this.score += bricks[i].points
+        bricks[i].counted = 1;
+      }
+    }
+    
+  }
+
   step(delta){
     this.moveObjects(delta);
-    this.checkPaddleBall()
+    this.checkPaddleBall();
+    this.checkBallBricks();
+    this.checkScore();
   }
 
 

@@ -7,6 +7,15 @@ const COLOR_DEFAULTS = {
   5: "blue"
 }
 
+const POINTS_DEFAULT = {
+  0: 1000,
+  1: 500,
+  2: 400,
+  3: 300,
+  4: 200,
+  5: 100
+}
+
 
 
 class Brick {
@@ -21,6 +30,9 @@ class Brick {
     this.padding = options.padding;
     this.getxCoord = this.getxCoord.bind(this);
     this.getyCoord = this.getyCoord.bind(this);
+    this.hit = 0;
+    this.points = POINTS_DEFAULT[this.pos[1]];
+    this.counted = 0;
   }
 
   getxCoord(posx) {
@@ -33,13 +45,13 @@ class Brick {
 
 
   draw(ctx) {
-
-    ctx.beginPath();
-    ctx.rect(this.getxCoord(this.pos[0]), this.getyCoord(this.pos[1]), this.width, this.height);
-    ctx.fillStyle = this.color;
-    ctx.fill();
-    ctx.closePath();
-
+    if (this.hit === 0) {
+      ctx.beginPath();
+      ctx.rect(this.getxCoord(this.pos[0]), this.getyCoord(this.pos[1]), this.width, this.height);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+      ctx.closePath();
+    }
   }
 
 
