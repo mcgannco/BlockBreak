@@ -9,6 +9,8 @@ class Game {
     this.paddle = [];
     this.score = 0;
     this.lives = 5;
+    this.level = 0;
+    this.paused = 0;
   }
 
   add(object) {
@@ -69,26 +71,44 @@ class Game {
     return [].concat(this.ball, this.bricks);
   }
 
-  draw(ctx) {
+  drawHomePage(ctx) {
     ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
 
-    this.allObjects().forEach((object) => {
-      object.draw(ctx);
-    });
-
     ctx.beginPath();
     ctx.font = ("15px Space Mono");
     ctx.fillStyle = "White";
-    ctx.fillText(`Score: ${this.score}`,32.5,490);
+    ctx.fillText(`Press S to Start`,400,250);
     ctx.closePath();
 
-    ctx.beginPath();
-    ctx.font = ("15px Space Mono");
-    ctx.fillStyle = "White";
-    ctx.fillText(`Lives: ${this.lives}`,700,490);
-    ctx.closePath();
+
+  }
+
+  draw(ctx) {
+    if (this.level === 0) {
+      this.drawHomePage(ctx);
+    } else {
+      ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
+      ctx.fillStyle = "black";
+      ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
+
+      this.allObjects().forEach((object) => {
+        object.draw(ctx);
+      });
+
+      ctx.beginPath();
+      ctx.font = ("15px Space Mono");
+      ctx.fillStyle = "White";
+      ctx.fillText(`Score: ${this.score}`,32.5,490);
+      ctx.closePath();
+
+      ctx.beginPath();
+      ctx.font = ("15px Space Mono");
+      ctx.fillStyle = "White";
+      ctx.fillText(`Lives: ${this.lives}`,700,490);
+      ctx.closePath();
+    }
   }
 
   moveObjects(delta) {
@@ -131,7 +151,6 @@ class Game {
         bricks[i].counted = 1;
       }
     }
-
   }
 
   step(delta){
@@ -140,8 +159,6 @@ class Game {
     this.checkBallBricks();
     this.checkScore();
   }
-
-
 }
 
 Game.DIM_X = 800;

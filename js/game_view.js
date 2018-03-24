@@ -22,8 +22,6 @@ class GameView {
     requestAnimationFrame(this.animate.bind(this));
   }
 
-
-
   keyDownHandler(event){
    if (event.keyCode === 65) {
      this.paddle.vel[0] -= 7;
@@ -35,6 +33,9 @@ class GameView {
      this.paddle.vel[0] += 7;
    } else if (this.ball.vel[0] === 0 && this.ball.vel[0] === 0 && event.keyCode === 32) {
      this.ball.vel = [5,-5];
+   } else if (event.keyCode === 83) {
+     this.game.level = 1;
+
    }
  }
 
@@ -45,6 +46,8 @@ class GameView {
      this.paddle.vel[0] = 0;
    } else if (this.ball.vel[0] === 0 && this.ball.vel[0] === 0 && event.keyCode === 32) {
      this.ball.vel = [5,-5];
+   } else if (event.keyCode === 83) {
+     this.game.level = 1;
    }
   }
 }
