@@ -78,6 +78,8 @@ class Game {
 
 
   drawCube(x, y, wx, wy, h, color) {
+
+    
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x - wx, y - wx * 0.5);
@@ -124,9 +126,11 @@ class Game {
 
   drawHomePage(ctx) {
     let wobble = Math.sin(Date.now()/250)*500/50;
+    ctx.beginPath();
     ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
+    ctx.closePath();
 
     ctx.beginPath();
     ctx.font = "bold 30pt Space Mono";

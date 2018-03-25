@@ -32,8 +32,9 @@
    } else if (event.keyCode === 39) {
      this.paddle.vel[0] += 7;
    } else if (this.ball.vel[0] === 0 && this.ball.vel[0] === 0 && event.keyCode === 32) {
-     const x = 5 * this.game.level;
-     const y = 5 * this.game.level
+     const value = this.paddle.pos[0] < 250 ? -4 : 4;
+     const x = value * this.game.level;
+     const y = 5 * this.game.level;
      this.ball.vel = [x,y];
      this.game.reset = 0;
    } else if (event.keyCode === 83) {
@@ -49,8 +50,9 @@
    } else if(event.keyCode === 37 || event.keyCode === 39){
      this.paddle.vel[0] = 0;
    } else if (this.ball.vel[0] === 0 && this.ball.vel[0] === 0 && event.keyCode === 32) {
-     const x = 5 * this.game.level;
-     const y = 5 * this.game.level
+     const value = this.paddle.pos[0] < 250 ? -4 : 4;
+     const x = value * this.game.level;
+     const y = 5 * this.game.level;
      this.ball.vel = [x,y];
      this.game.reset = 0;
    } else if (event.keyCode === 83) {
