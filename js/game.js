@@ -49,6 +49,7 @@ class Game {
     pos: [325, 450],
     color: "#4169E1",
     vel: [0,0],
+    cornerRadius: 20,
     game: this
   });
 
