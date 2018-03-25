@@ -13,7 +13,8 @@ html, body, canvas {
   background-size: cover;
   background-repeat: no-repeat;
   font-family: 'Space Mono', monospace;
-
+  height: 1000px;
+  overflow: hidden;
  }
 
  canvas {
