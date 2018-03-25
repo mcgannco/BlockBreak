@@ -81,9 +81,15 @@ class Game {
     ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
 
     ctx.beginPath();
-    ctx.font = ("15px Space Mono");
+    ctx.font = "bold 30pt Space Mono";;
+    ctx.fillStyle = "blue";
+    ctx.fillText(`Get Ready To Break Some Blocks`,32,125);
+    ctx.closePath();
+
+    ctx.beginPath();
+    ctx.font = ("25px Space Mono");
     ctx.fillStyle = "White";
-    ctx.fillText(`Press S to Start`,400,250);
+    ctx.fillText(`Press "s" to Start`,280,400);
     ctx.closePath();
   }
 
@@ -92,14 +98,6 @@ class Game {
       this.bricks = [];
       this.reset = 1;
       this.addBricks();
-
-      // for (let i = 0; i < this.bricks.length; i++) {
-      //   this.bricks[i].hit = 0;
-      //   this.bricks[i].counted = 0;
-      //   this.bricks[i].width = 110;
-      //   this.bricks[i].height = 15;
-      //   this.reset = 1;
-      // }
         this.level += 1
     }
   }
@@ -201,12 +199,27 @@ class Game {
     }
   }
 
+  gameWon() {
+    let arr = Object.keys(Game.GAME_LEVELS).map(el => parseInt(el));
+    if (this.allBricksHit() && this.level === arr[arr.length - 1]) {
+      this.score = 0;
+      this.lives = 5;
+      this.level = 0;
+      this.paused = 0;
+      this.reset = 0;
+      this.paddle[0].pos = [325, 450];
+      this.bricks = [];
+      this.addBricks();
+    }
+  }
+
   step(delta){
     this.moveObjects(delta);
     this.checkPaddleBall();
     this.checkBallBricks();
     this.checkScore();
     this.resetGame();
+    this.gameWon();
   }
 }
 

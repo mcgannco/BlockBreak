@@ -1,4 +1,4 @@
-class GameView {
+   class GameView {
   constructor(game, ctx){
     this.ctx = ctx;
     this.game = game;
@@ -38,6 +38,8 @@ class GameView {
      this.game.reset = 0;
    } else if (event.keyCode === 83) {
      this.game.level = 1;
+   } else if (event.keyCode === 80) {
+     this.paddle.vel[0] = 0;
    }
  }
 
@@ -53,6 +55,8 @@ class GameView {
      this.game.reset = 0;
    } else if (event.keyCode === 83) {
      this.game.level = 1;
+   } else if (event.keyCode === 80) {
+     this.paddle.vel[0] = 0;
    }
   }
 }
