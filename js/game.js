@@ -10,7 +10,9 @@ class Game {
     this.score = 0;
     this.lives = 5;
     this.level = 0;
+    this.levelSettings = [];
     this.paused = 0;
+    this.reset = 0;
   }
 
   add(object) {
@@ -20,6 +22,8 @@ class Game {
         this.paddle.push(object);
     } else if (object instanceof Brick) {
         this.bricks.push(object);
+    } else if (object instanceof LevelSettings){
+        this.levelSettings.push(object)
     } else {
       throw new Error("unknown type of object");
     }
@@ -53,9 +57,9 @@ class Game {
   }
 
   addBricks() {
-    for (let i = 0; i < Game.NUM_ROWS; i++) {
-      for (let j = 0; j < Game.NUM_COLS; j++)
-      this.add(new Brick({ game: this, left: 32.5, top: 20, padding: 15, width: 110, height: 15, color: "green", pos: [i, j]}));
+    for (let i = 0; i < Game.GAME_LEVELS[this.level + 1].dim.rows; i++) {
+      for (let j = 0; j < Game.GAME_LEVELS[this.level + 1].dim.cols; j++)
+      this.add(new Brick({ game: this, color: Game.GAME_LEVELS[this.level + 1].colors[j], left: Game.GAME_LEVELS[this.level + 1].dim.left, top: Game.GAME_LEVELS[this.level + 1].dim.top, padding: Game.GAME_LEVELS[this.level + 1].dim.padding, width: Game.GAME_LEVELS[this.level + 1].dim.width, height: Game.GAME_LEVELS[this.level + 1].dim.height, pos: [i, j]}));
     }
   }
 
@@ -81,14 +85,39 @@ class Game {
     ctx.fillStyle = "White";
     ctx.fillText(`Press S to Start`,400,250);
     ctx.closePath();
+  }
 
+  nextLevel() {
+    if (this.allBricksHit() && this.lives > 0) {
+      this.bricks = [];
+      this.reset = 1;
+      this.addBricks();
 
+      // for (let i = 0; i < this.bricks.length; i++) {
+      //   this.bricks[i].hit = 0;
+      //   this.bricks[i].counted = 0;
+      //   this.bricks[i].width = 110;
+      //   this.bricks[i].height = 15;
+      //   this.reset = 1;
+      // }
+        this.level += 1
+    }
+  }
+
+  allBricksHit() {
+    for (let i = 0; i < this.bricks.length; i++) {
+      if(this.bricks[i].hit === 0) {
+        return false;
+      }
+    }
+    return true;
   }
 
   draw(ctx) {
     if (this.level === 0) {
       this.drawHomePage(ctx);
     } else {
+      this.nextLevel();
       ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
       ctx.fillStyle = "black";
       ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
@@ -107,6 +136,12 @@ class Game {
       ctx.font = ("15px Space Mono");
       ctx.fillStyle = "White";
       ctx.fillText(`Lives: ${this.lives}`,700,490);
+      ctx.closePath();
+
+      ctx.beginPath();
+      ctx.font = ("15px Space Mono");
+      ctx.fillStyle = "White";
+      ctx.fillText(`Level: ${this.level}`,600,490);
       ctx.closePath();
     }
   }
@@ -153,11 +188,25 @@ class Game {
     }
   }
 
+  resetGame() {
+    if (this.lives === 0) {
+      this.score = 0;
+      this.lives = 5;
+      this.level = 0;
+      this.paused = 0;
+      this.reset = 0;
+      this.paddle[0].pos = [325, 450];
+      this.bricks = [];
+      this.addBricks();
+    }
+  }
+
   step(delta){
     this.moveObjects(delta);
     this.checkPaddleBall();
     this.checkBallBricks();
     this.checkScore();
+    this.resetGame();
   }
 }
 
@@ -165,6 +214,61 @@ Game.DIM_X = 800;
 Game.DIM_Y = 500;
 Game.NUM_ROWS = 6;
 Game.NUM_COLS = 6;
+
+
+Game.GAME_LEVELS = {
+  0: {
+    colors: {
+    },
+    dim: {
+      rows: 0,
+      cols: 0,
+      left: 0,
+      top: 0,
+      padding: 0,
+      width: 0,
+      height: 0
+    }
+  },
+  1: {
+    colors: {
+      0: "green",
+      1: "yellow",
+      2: "orange",
+      3: "red",
+      4: "purple",
+      5: "blue"
+    },
+    dim: {
+      rows: 6,
+      cols: 6,
+      left: 32.5,
+      top: 20,
+      padding: 15,
+      width: 110,
+      height: 15
+    }
+  },
+  2: {
+    colors: {
+      0: "blue",
+      1: "blue",
+      2: "blue",
+      3: "blue",
+      4: "blue",
+      5: "blue"
+    },
+    dim: {
+      rows: 6,
+      cols: 6,
+      left: 32.5,
+      top: 20,
+      padding: 15,
+      width: 110,
+      height: 15
+    }
+  },
+}
 
 
 export default Game;

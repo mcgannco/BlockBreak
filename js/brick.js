@@ -21,7 +21,7 @@ const POINTS_DEFAULT = {
 class Brick {
   constructor(options) {
     this.pos = options.pos;
-    this.color = COLOR_DEFAULTS[this.pos[1]];
+    this.color = options.color;
     this.game = options.game;
     this.width = options.width;
     this.height = options.height;
