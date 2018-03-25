@@ -14,6 +14,8 @@ class Game {
     this.paused = 0;
     this.reset = 0;
     this.intro = true;
+    this.won = false;
+    this.lost = false;
   }
 
   add(object) {
@@ -96,7 +98,7 @@ class Game {
     ctx.lineTo(x + wy, y - h - wy * 0.5);
     ctx.lineTo(x, y - h * 1);
     ctx.closePath();
-    ctx.fillStyle = this.shadeColor(color, 10);
+    ctx.fillStyle = this.shadeColor(color, -5);
     ctx.strokeStyle = this.shadeColor("#000000", 50);
     ctx.stroke();
     ctx.fill();
@@ -150,7 +152,7 @@ class Game {
     ctx.beginPath();
     ctx.font = ("25px Space Mono");
     ctx.fillStyle = "White";
-    ctx.fillText(`Press "s" to Start`,260,450);
+    ctx.fillText(`Press "s" to start`,260,450);
     ctx.closePath();
   }
 
@@ -174,9 +176,12 @@ class Game {
   }
 
   draw(ctx) {
-    if (this.level === 0) {
+    if(this.level === 0 && this.won) {
+      this.drawWinner(ctx);
+    } else if (this.level === 0 && this.lost) {
+    } else if (this.level === 0) {
       this.drawHomePage(ctx);
-    } else {
+    }  else {
       this.nextLevel();
       ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
       ctx.fillStyle = "black";
@@ -249,8 +254,65 @@ class Game {
     }
   }
 
-  resetGame() {
+  drawWinner(ctx) {
+    let wobble = Math.sin(Date.now()/250)*500/50;
+    ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
+
+    ctx.beginPath();
+    ctx.font = "bold 30pt Space Mono";
+    ctx.fillStyle = "blue";
+    ctx.fillText(`You WIN!!!`,32,125);
+    ctx.closePath();
+
+    this.drawCube(400, 380 + wobble, 100, 100,100, "#0000FF");
+
+    ctx.beginPath();
+    ctx.font = ("25px Space Mono");
+    ctx.fillStyle = "White";
+    ctx.fillText(`Press "n" for new game`,260,450);
+    ctx.closePath();
+
+  }
+
+  winner() {
+    let arr = Object.keys(Game.GAME_LEVELS).map(el => parseInt(el));
+    return this.allBricksHit() && this.level === arr[arr.length - 1];
+  }
+
+  gameWon() {
+    if (this.winner()) {
+      this.score = 0;
+      this.lives = 5;
+      this.level = 0;
+      this.paused = 0;
+      this.reset = 0;
+      this.paddle[0].pos = [325, 450];
+      this.bricks = [];
+      this.ball.vel = [0,0];
+      this.addBricks();
+      this.won = true;
+    }
+  }
+
+  gamelost() {
     if (this.lives === 0) {
+      this.score = 0;
+      this.lives = 5;
+      this.level = 0;
+      this.paused = 0;
+      this.reset = 0;
+      this.paddle[0].pos = [325, 450];
+      this.bricks = [];
+      this.ball.vel = [0,0];
+      this.addBricks();
+      this.lost = true;
+    }
+  }
+
+  resetGame() {
+    if (this.lives === 0 && this.lost) {
       this.score = 0;
       this.lives = 5;
       this.level = 0;
@@ -260,20 +322,6 @@ class Game {
       this.bricks = [];
       this.addBricks();
       this.intro = true;
-    }
-  }
-
-  gameWon() {
-    let arr = Object.keys(Game.GAME_LEVELS).map(el => parseInt(el));
-    if (this.allBricksHit() && this.level === arr[arr.length - 1]) {
-      this.score = 0;
-      this.lives = 5;
-      this.level = 0;
-      this.paused = 0;
-      this.reset = 0;
-      this.paddle[0].pos = [325, 450];
-      this.bricks = [];
-      this.addBricks();
     }
   }
 
@@ -317,8 +365,8 @@ Game.GAME_LEVELS = {
       5: "blue"
     },
     dim: {
-      rows: 6,
-      cols: 6,
+      rows: 1,
+      cols: 1,
       left: 32.5,
       top: 20,
       padding: 15,
@@ -336,8 +384,8 @@ Game.GAME_LEVELS = {
       5: "blue"
     },
     dim: {
-      rows: 3,
-      cols: 6,
+      rows: 1,
+      cols: 1,
       left: 32.5,
       top: 20,
       padding: 15,
