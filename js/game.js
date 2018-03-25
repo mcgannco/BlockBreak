@@ -23,7 +23,7 @@ class Game {
     } else if (object instanceof Brick) {
         this.bricks.push(object);
     } else if (object instanceof LevelSettings){
-        this.levelSettings.push(object)
+        this.levelSettings.push(object);
     } else {
       throw new Error("unknown type of object");
     }
@@ -75,21 +75,70 @@ class Game {
     return [].concat(this.ball, this.bricks);
   }
 
+
+  drawCube(x, y, wx, wy, h, color) {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x - wx, y - wx * 0.5);
+    ctx.lineTo(x - wx, y - h - wx * 0.5);
+    ctx.lineTo(x, y - h * 1);
+    ctx.closePath();
+    ctx.fillStyle = this.shadeColor(color, -40);
+    ctx.strokeStyle = "#000000";
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + wy, y - wy * 0.5);
+    ctx.lineTo(x + wy, y - h - wy * 0.5);
+    ctx.lineTo(x, y - h * 1);
+    ctx.closePath();
+    ctx.fillStyle = this.shadeColor(color, 10);
+    ctx.strokeStyle = this.shadeColor("#000000", 50);
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(x, y - h);
+    ctx.lineTo(x - wx, y - h - wx * 0.5);
+    ctx.lineTo(x - wx + wy, y - h - (wx * 0.5 + wy * 0.5));
+    ctx.lineTo(x + wy, y - h - wy * 0.5);
+    ctx.closePath();
+    ctx.fillStyle = this.shadeColor(color, 20);
+    ctx.strokeStyle = this.shadeColor("black", 60);
+    ctx.stroke();
+    ctx.fill();
+  }
+
+  shadeColor(color, percent) {
+  color = color.substr(1);
+  var num = parseInt(color, 16),
+    amt = Math.round(2.55 * percent),
+    R = (num >> 16) + amt,
+    G = (num >> 8 & 0x00FF) + amt,
+    B = (num & 0x0000FF) + amt;
+  return '#' + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 + (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+}
+
   drawHomePage(ctx) {
+    let wobble = Math.sin(Date.now()/250)*300/50;
     ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
 
     ctx.beginPath();
-    ctx.font = "bold 30pt Space Mono";;
+    ctx.font = "bold 30pt Space Mono";
     ctx.fillStyle = "blue";
     ctx.fillText(`Get Ready To Break Some Blocks`,32,125);
     ctx.closePath();
 
+    this.drawCube(400, 380 + wobble, 100, 100,100, "#0000FF");
+
     ctx.beginPath();
     ctx.font = ("25px Space Mono");
     ctx.fillStyle = "White";
-    ctx.fillText(`Press "s" to Start`,280,400);
+    ctx.fillText(`Press "s" to Start`,260,450);
     ctx.closePath();
   }
 
@@ -98,7 +147,7 @@ class Game {
       this.bricks = [];
       this.reset = 1;
       this.addBricks();
-        this.level += 1
+        this.level += 1;
     }
   }
 
@@ -180,7 +229,7 @@ class Game {
     const bricks = this.bricks;
     for( let i = 0; i < bricks.length; i++) {
       if (bricks[i].hit === 1 && bricks[i].counted === 0) {
-        this.score += bricks[i].points
+        this.score += bricks[i].points;
         bricks[i].counted = 1;
       }
     }
@@ -281,7 +330,7 @@ Game.GAME_LEVELS = {
       height: 15
     }
   },
-}
+};
 
 
 export default Game;
