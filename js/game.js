@@ -13,6 +13,7 @@ class Game {
     this.levelSettings = [];
     this.paused = 0;
     this.reset = 0;
+    this.intro = true;
   }
 
   add(object) {
@@ -78,8 +79,6 @@ class Game {
 
 
   drawCube(x, y, wx, wy, h, color) {
-
-    
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x - wx, y - wx * 0.5);
@@ -114,9 +113,19 @@ class Game {
     ctx.fill();
   }
 
+  drawLevel(intro) {
+    if(intro) {
+      ctx.beginPath();
+      ctx.font = ("25px Space Mono");
+      ctx.fillStyle = "White";
+      ctx.fillText(`Level ${this.level} (Press space to start)`,180,300);
+      ctx.closePath();
+    }
+  }
+
   shadeColor(color, percent) {
-  color = color.substr(1);
-  var num = parseInt(color, 16),
+  let col = color.substr(1);
+  let num = parseInt(col, 16),
     amt = Math.round(2.55 * percent),
     R = (num >> 16) + amt,
     G = (num >> 8 & 0x00FF) + amt,
@@ -126,11 +135,9 @@ class Game {
 
   drawHomePage(ctx) {
     let wobble = Math.sin(Date.now()/250)*500/50;
-    ctx.beginPath();
     ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
-    ctx.closePath();
 
     ctx.beginPath();
     ctx.font = "bold 30pt Space Mono";
@@ -153,6 +160,7 @@ class Game {
       this.reset = 1;
       this.addBricks();
         this.level += 1;
+        this.intro = true;
     }
   }
 
@@ -177,6 +185,7 @@ class Game {
       this.allObjects().forEach((object) => {
         object.draw(ctx);
       });
+      this.drawLevel(this.intro);
 
       ctx.beginPath();
       ctx.font = ("15px Space Mono");
@@ -250,6 +259,7 @@ class Game {
       this.paddle[0].pos = [325, 450];
       this.bricks = [];
       this.addBricks();
+      this.intro = true;
     }
   }
 
@@ -326,7 +336,7 @@ Game.GAME_LEVELS = {
       5: "blue"
     },
     dim: {
-      rows: 6,
+      rows: 3,
       cols: 6,
       left: 32.5,
       top: 20,

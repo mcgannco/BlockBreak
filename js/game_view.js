@@ -33,14 +33,17 @@
      this.paddle.vel[0] += 7;
    } else if (this.ball.vel[0] === 0 && this.ball.vel[0] === 0 && event.keyCode === 32) {
      const value = this.paddle.pos[0] < 250 ? -4 : 4;
-     const x = value * this.game.level;
-     const y = 5 * this.game.level;
+     const x = value + this.game.level;
+     const y = 5 + this.game.level;
      this.ball.vel = [x,y];
      this.game.reset = 0;
+     this.game.intro = false;
    } else if (event.keyCode === 83) {
      this.game.level = 1;
    } else if (event.keyCode === 80) {
      this.paddle.vel[0] = 0;
+   } else if (event.keyCode === 78) {
+     this.game.lives = 0;
    }
  }
 
@@ -51,14 +54,18 @@
      this.paddle.vel[0] = 0;
    } else if (this.ball.vel[0] === 0 && this.ball.vel[0] === 0 && event.keyCode === 32) {
      const value = this.paddle.pos[0] < 250 ? -4 : 4;
-     const x = value * this.game.level;
-     const y = 5 * this.game.level;
+     const x = value + this.game.level;
+     const y = 5 + this.game.level;
      this.ball.vel = [x,y];
      this.game.reset = 0;
+     this.game.intro = false;
    } else if (event.keyCode === 83) {
      this.game.level = 1;
    } else if (event.keyCode === 80) {
      this.paddle.vel[0] = 0;
+   } else if (event.keyCode === 78) {
+     this.game.lives = 0;
+     this.ball.vel =[0,0];
    }
   }
 }
