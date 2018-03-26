@@ -43,12 +43,13 @@
      this.ball.vel = [0,0];
      this.game.lives = 5;
      this.paddle.pos = [325, 450];
+     this.game.newgame = false;
    } else if (event.keyCode === 80) {
      this.paddle.vel[0] = 0;
    } else if (event.keyCode === 78) {
-     this.game.lives = 0;
+     this.ball.vel =[0,0];
+     this.game.newgame = true;
      this.game.lost = false;
-     this.game.won = false;
    }
  }
 
@@ -69,13 +70,13 @@
      this.ball.vel = [0,0];
      this.game.lives = 5;
      this.paddle.pos = [325, 450];
+     this.game.newgame = false;
    } else if (event.keyCode === 80) {
      this.paddle.vel[0] = 0;
    } else if (event.keyCode === 78) {
-     this.game.lives = 0;
      this.ball.vel =[0,0];
+     this.game.newgame = true;
      this.game.lost = false;
-     this.game.won = false;
    }
   }
 }

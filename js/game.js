@@ -8,7 +8,7 @@ class Game {
     this.ball = [];
     this.paddle = [];
     this.score = 0;
-    this.lives = 5;
+    this.lives = 1;
     this.level = 0;
     this.levelSettings = [];
     this.paused = 0;
@@ -16,6 +16,7 @@ class Game {
     this.intro = true;
     this.won = false;
     this.lost = false;
+    this.newgame = false;
   }
 
   add(object) {
@@ -176,9 +177,11 @@ class Game {
   }
 
   draw(ctx) {
+
     if(this.level === 0 && this.won) {
       this.drawWinner(ctx);
-    } else if (this.level === 0 && this.lost) {
+    } else if (this.lost) {
+      this.drawLoser(ctx);
     } else if (this.level === 0) {
       this.drawHomePage(ctx);
     }  else {
@@ -276,6 +279,28 @@ class Game {
 
   }
 
+  drawLoser(ctx) {
+    let wobble = Math.sin(Date.now()/250)*500/50;
+    ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
+
+    ctx.beginPath();
+    ctx.font = "bold 30pt Space Mono";
+    ctx.fillStyle = "blue";
+    ctx.fillText(`You Lose!!!`,32,125);
+    ctx.closePath();
+
+    this.drawCube(400, 380 + wobble, 100, 100,100, "#0000FF");
+
+    ctx.beginPath();
+    ctx.font = ("25px Space Mono");
+    ctx.fillStyle = "White";
+    ctx.fillText(`Press "n" for new game`,260,450);
+    ctx.closePath();
+
+  }
+
   winner() {
     let arr = Object.keys(Game.GAME_LEVELS).map(el => parseInt(el));
     return this.allBricksHit() && this.level === arr[arr.length - 1];
@@ -296,23 +321,14 @@ class Game {
     }
   }
 
-  gamelost() {
-    if (this.lives === 0) {
-      this.score = 0;
-      this.lives = 5;
-      this.level = 0;
-      this.paused = 0;
-      this.reset = 0;
-      this.paddle[0].pos = [325, 450];
-      this.bricks = [];
-      this.ball.vel = [0,0];
-      this.addBricks();
+  gameLost() {
+    if(this.lives === 0) {
       this.lost = true;
     }
   }
 
   resetGame() {
-    if (this.lives === 0 && this.lost) {
+    if (this.newgame) {
       this.score = 0;
       this.lives = 5;
       this.level = 0;
@@ -322,6 +338,8 @@ class Game {
       this.bricks = [];
       this.addBricks();
       this.intro = true;
+      this.lost = false;
+      this.won = false;
     }
   }
 
@@ -330,8 +348,9 @@ class Game {
     this.checkPaddleBall();
     this.checkBallBricks();
     this.checkScore();
-    this.resetGame();
     this.gameWon();
+    this.resetGame();
+    this.gameLost();
   }
 }
 

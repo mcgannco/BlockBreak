@@ -5,7 +5,7 @@ const COLOR_DEFAULTS = {
   3: "red",
   4: "purple",
   5: "blue"
-}
+};
 
 const POINTS_DEFAULT = {
   0: 500,
@@ -14,7 +14,7 @@ const POINTS_DEFAULT = {
   3: 75,
   4: 50,
   5: 25
-}
+};
 
 
 
@@ -36,11 +36,11 @@ class Brick {
   }
 
   getxCoord(posx) {
-    return((posx*(this.width+this.padding))+this.left)
+    return((posx*(this.width+this.padding))+this.left);
   }
 
   getyCoord(posy) {
-    return((posy*(this.height+this.padding))+this.top)
+    return((posy*(this.height+this.padding))+this.top);
   }
 
 
