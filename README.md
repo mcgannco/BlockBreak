@@ -29,3 +29,8 @@ isCollidedWith(otherObj) {
   }
 }
 ```
+
+### Paddle / Ball Movement
+
+## Features to add
+### Sound effects
