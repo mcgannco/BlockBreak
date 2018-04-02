@@ -22,11 +22,10 @@ All 2D rendering is done using HTML 5 Canvas. Through each Canvas elements, I wa
 ```
 
 ```javascript
-  draw(ctx) {
-    ctx.beginPath();
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.pos[0], this.pos[1], this.width, this.height);
-    ctx.fill();
-    ctx.closePath();
+isCollidedWith(otherObj) {
+  if(this.pos[1] + this.vel[1] > 450 - this.radius &&
+  (this.pos[0] > otherObj.pos[0] && this.pos[0] < otherObj.pos[0] + otherObj.width)) {
+    return true;
   }
+}
 ```
