@@ -48,5 +48,5 @@ move(timeDelta){
 ```
 
 ## Features to add
-* Sound effects
+* Sound effects (ball impact on brick, paddle and wall)
 * Additional levels
