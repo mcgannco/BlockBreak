@@ -403,6 +403,44 @@ Game.GAME_LEVELS = {
       height: 15
     }
   },
+  3: {
+    colors: {
+      0: "red",
+      1: "white",
+      2: "blue",
+      3: "red",
+      4: "white",
+      5: "blue"
+    },
+    dim: {
+      rows: 6,
+      cols: 6,
+      left: 32.5,
+      top: 20,
+      padding: 15,
+      width: 110,
+      height: 15
+    }
+  },
+  4: {
+    colors: {
+      0: "green",
+      1: "green",
+      2: "green",
+      3: "brown",
+      4: "brown",
+      5: "brown"
+    },
+    dim: {
+      rows: 6,
+      cols: 6,
+      left: 32.5,
+      top: 20,
+      padding: 15,
+      width: 110,
+      height: 15
+    }
+  },
 };
 
 
