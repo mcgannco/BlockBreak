@@ -31,7 +31,7 @@ class MovingObject {
   }
 
   collideWith(otherObj) {
-    if (this.pos[1] > 470 - this.radius) {
+    if (this.pos[1] > 455 - this.radius) {
       return;
     } else {
         this.vel[1] *= -1
