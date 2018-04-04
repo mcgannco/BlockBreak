@@ -41,7 +41,7 @@
      this.ball.vel = [x,y];
      this.game.reset = 0;
      this.game.intro = false;
-   } else if (event.keyCode === 83) {
+   } else if (event.keyCode === 83 && this.game.level === 0) {
      this.game.level = 1;
      this.ball.vel = [0,0];
      this.game.lives = 5;
@@ -72,7 +72,7 @@
      this.game.reset = 0;
      this.game.intro = false;
      event.preventDefault();
-   } else if (event.keyCode === 83) {
+   } else if (event.keyCode === 83 && this.game.level === 0) {
      this.game.level = 1;
      this.ball.vel = [0,0];
      this.game.lives = 5;
