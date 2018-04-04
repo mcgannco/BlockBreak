@@ -375,8 +375,8 @@ Game.GAME_LEVELS = {
       5: "blue"
     },
     dim: {
-      rows: 6,
-      cols: 6,
+      rows: 1,
+      cols: 1,
       left: 32.5,
       top: 20,
       padding: 15,

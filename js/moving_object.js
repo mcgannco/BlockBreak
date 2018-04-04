@@ -24,7 +24,7 @@ class MovingObject {
   }
 
   isCollidedWith(otherObj) {
-    if(this.pos[1] + this.vel[1] > 450 - this.radius && this.pos[1] + this.vel[1] < 465 - this.radius &&
+    if(this.pos[1] + this.vel[1] > 450 - this.radius && this.pos[1] + this.vel[1] < 475 - this.radius &&
     (this.pos[0] > otherObj.pos[0] && this.pos[0] < otherObj.pos[0] + otherObj.width)) {
       return true;
     }
