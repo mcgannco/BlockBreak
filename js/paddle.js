@@ -15,7 +15,9 @@ class Paddle extends MovingObject {
 
   move(timeDelta){
     const velScale = timeDelta / NORMAL_FRAME_TIME_DELTA;
-    let offsetX = this.vel[0] * velScale;
+
+      let offsetX = this.vel[0] * velScale;
+
     if(this.pos[0] + this.vel[0] >= 800 - this.width || this.pos[0] + this.vel[0] < 0) {
       this.vel[0] = 0;
     } else {

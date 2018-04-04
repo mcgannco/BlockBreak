@@ -24,14 +24,14 @@
 
   keyDownHandler(event){
    if (event.keyCode === 65) {
-     this.paddle.vel[0] -= 7;
+     this.paddle.vel[0] = -7;
    } else if (event.keyCode === 68) {
-     this.paddle.vel[0] += 7;
+     this.paddle.vel[0] = 7;
    } else if (event.keyCode === 37) {
-     this.paddle.vel[0] -= 7;
+     this.paddle.vel[0] = -7;
      event.preventDefault();
    } else if (event.keyCode === 39) {
-     this.paddle.vel[0] += 7;
+     this.paddle.vel[0] = 7;
      event.preventDefault();
    } else if (this.ball.vel[0] === 0 && this.ball.vel[0] === 0 && event.keyCode === 32) {
      const value = this.paddle.pos[0] < 250 ? -4 : 4;
