@@ -162,8 +162,11 @@ class Game {
       this.bricks = [];
       this.reset = 1;
       this.addBricks();
-        this.level += 1;
-        this.intro = true;
+      this.level += 1;
+      this.intro = true;
+      const audio = new Audio('./assets/music/levelup.mp3');
+      audio.load();
+      audio.play();
     }
   }
 

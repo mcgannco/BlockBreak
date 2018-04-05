@@ -24,6 +24,9 @@ class Ball extends MovingObject {
     if(this.pos[1] + this.vel[1] > 500 - this.radius) {
       this.vel[1] *= -1;
       this.game.lives -= 1;
+      const audio = new Audio('./assets/music/die.mp3');
+      audio.load();
+      audio.play();
       this.game.ball[0].pos = [(this.game.paddle[0].pos[0] + (this.game.paddle[0].width / 2)), 440];
       this.game.ball[0].vel = [0,0];
     }
