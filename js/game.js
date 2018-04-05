@@ -371,19 +371,24 @@ Game.GAME_LEVELS = {
   1: {
     colors: {
       0: "green",
-      1: "yellow",
-      2: "orange",
-      3: "red",
-      4: "purple",
-      5: "blue"
+      1: "#7FFF00",
+      2: "yellow",
+      3: "orange",
+      4: "	#FF7F50",
+      5: "red",
+      6: "#FF1493",
+      7: "purple",
+      8: "blue",
+      9: "#00008B"
+
     },
     dim: {
-      rows: 6,
-      cols: 6,
-      left: 32.5,
+      rows: 14,
+      cols: 10,
+      left: 15,
       top: 20,
-      padding: 15,
-      width: 110,
+      padding: 5,
+      width: 50,
       height: 15
     }
   },

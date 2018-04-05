@@ -6,19 +6,6 @@ class Paddle extends MovingObject {
   }
 
   draw(ctx) {
-    // var rectX = 50;
-    // var rectY = 50;
-    // var rectWidth = 100;
-    // var rectHeight = 100;
-    // var cornerRadius = 20;
-    //
-    // ctx.lineJoin = "round";
-    // ctx.lineWidth = cornerRadius;
-    //
-    // ctx.strokeRect(this.pos[0]+(cornerRadius/2), this.pos[1]+(cornerRadius/2), this.width-cornerRadius, this.height-cornerRadius);
-    // ctx.fillRect(this.pos[0]+(cornerRadius/2), this.pos[1]+(cornerRadius/2), this.width-cornerRadius, this.-cornerRadius);
-
-
     ctx.beginPath();
     ctx.fillStyle = this.color;
     ctx.fillRect(this.pos[0], this.pos[1], this.width, this.height);
