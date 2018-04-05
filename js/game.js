@@ -48,8 +48,8 @@ class Game {
 
   addPaddle() {
   const paddle = new Paddle({
-    height: 20,
-    width: 150,
+    height: 50,
+    width: 200,
     pos: [325, 450],
     color: "#4169E1",
     vel: [0,0],

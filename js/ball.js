@@ -7,7 +7,7 @@ class Ball extends MovingObject {
 
   draw(ctx) {
     ctx.beginPath();
-    ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI);
+    ctx.arc(this.pos[0], this.pos[1]  +15, this.radius, 0, 2 * Math.PI);
     ctx.fillStyle = this.color;
     ctx.fill();
     ctx.closePath();
@@ -27,7 +27,7 @@ class Ball extends MovingObject {
       const audio = new Audio('./assets/music/die.mp3');
       audio.load();
       audio.play();
-      this.game.ball[0].pos = [(this.game.paddle[0].pos[0] + (this.game.paddle[0].width / 2)), 440];
+      this.game.ball[0].pos = [(this.game.paddle[0].pos[0] + (this.game.paddle[0].width / 2)), 300];
       this.game.ball[0].vel = [0,0];
     }
 
