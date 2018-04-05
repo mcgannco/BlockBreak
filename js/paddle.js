@@ -6,6 +6,7 @@ class Paddle extends MovingObject {
   }
 
   draw(ctx) {
+    
     ctx.beginPath();
     ctx.fillStyle = this.color;
     ctx.fillRect(this.pos[0], this.pos[1], this.width, this.height);

@@ -18,11 +18,24 @@ html, body, canvas {
  }
 
  canvas {
-   margin-bottom: 200px;
+   /*margin-bottom: 200px;*/
  }
 
 game-canvas {
   background: black;
+}
+
+.mute {
+  width: 40px;
+  height: 20px;
+  background: white;
+  color: black;
+  font-family: 'Space Mono', monospace;
+}
+
+.gamecontainer {
+  display: flex;
+  flex-direction: column;
 }
 
 .container {

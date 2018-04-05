@@ -9,4 +9,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const game = new Game();
   new GameView(game, ctx).start();
   window.ctx = ctx
+
+  const audio = new Audio('./assets/music/song.mp3');
+  audio.play();
+  const music = document.getElementById('mute');
+  music.addEventListener('click', () => {
+    audio.muted = !audio.muted;
+  });
+  audio.addEventListener('ended', () => {
+    audio.play();
+  });
 });

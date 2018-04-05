@@ -7,6 +7,8 @@ class MovingObject {
     this.game = options.game;
     this.width = options.width;
     this.height = options.height;
+    this.paddleSound = new Audio('./assets/music/paddle.mp3');
+    this.brickSound = new Audio('./assets/music/brick.mp3');
   }
 
   randomColor() {
@@ -31,10 +33,12 @@ class MovingObject {
   }
 
   collideWith(otherObj) {
-    
+
     if (this.pos[1] - this.vel[1] > 455 - this.radius) {
       return;
     } else {
+        this.paddleSound.load();
+        this.paddleSound.play();
         this.vel[1] *= -1
       }
   }
@@ -51,6 +55,8 @@ class MovingObject {
   }
 
   breakBrick(brickObj) {
+      this.brickSound.load();
+      this.brickSound.play();
       this.vel[1] *= -1
       brickObj.hit = 1;
       brickObj.width = 0;
