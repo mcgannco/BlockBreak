@@ -1,6 +1,6 @@
 # BlockBreak
 [Play here](https://mcgannco.github.io/BlockBreak/)
-![Optional Text](./assets/images/main.jpg)
+![Optional Text](./assets/images/main.png)
 
 ## Background
 BlockBreak was inspired off of Atari's classic game Breakout. It was written in JavaScript and uses Canvas for 2D rendering and as well as jQuery for DOM manipulation.
